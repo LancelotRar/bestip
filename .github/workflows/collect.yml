@@ -1,0 +1,32 @@
+name: 采集CF优选IP
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests
+
+      - name: 采集IP
+        run: python workflow/collects.py
+
+      - name: 提交更新
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add ipv4.txt
+          git diff --staged --quiet || git commit -m "更新CF优选IP列表 $(date '+%Y-%m-%d %H:%M')"
+          git push
