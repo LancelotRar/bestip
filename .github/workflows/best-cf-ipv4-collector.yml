@@ -2,7 +2,7 @@ name: Collect Best CF IPV4
 
 on:
   schedule:
-    - cron: '50 */1 * * *'
+    - cron: '50 */3 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -15,7 +15,7 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
 
