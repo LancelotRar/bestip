@@ -1,9 +1,18 @@
-name: Collect Cloudflare IPs
+name: Collect BestIPs
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */1 * * *'
   workflow_dispatch:
+    inputs:
+      force:
+        description: Force re-collect
+        type: boolean
+        default: false
+
+concurrency:
+  group: Collect BestIPs
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -11,22 +20,35 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
-      - run: pip install requests
+      - name: Cache pip
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('.github/scripts/requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
 
-      - name: Collect IPs
-        run: python workflow/bestip-collector.py
+      - name: Install dependencies
+        run: pip install -r .github/scripts/requirements.txt
+
+      - name: Collect BestIPs
+        run: python3 .github/scripts/bestip-collector.py
 
       - name: Commit update
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add ipv4.txt
-          git diff --staged --quiet || git commit -m "Update Cloudflare IP list $(date '+%Y-%m-%d %H:%M')"
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Update BestIPs list $(date '+%Y-%m-%d %H:%M')"
+          git pull --rebase
           git push

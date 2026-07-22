@@ -11,22 +11,20 @@ from urllib3.util import Retry
 
 
 SOURCES: dict[str, str] = {
-    'https://api.uouin.com/cloudflare.html': 'Uouin',
-    'https://ip.164746.xyz': 'ZXW',
+    'https://bestcf.pages.dev/wetest/ipv4.txt': 'WeTest',
+    'https://bestcf.pages.dev/uouin/all.txt': 'UOUIN',
+    'https://bestcf.pages.dev/xinyitang3/ipv4.txt': 'Mia',
+    'https://bestcf.pages.dev/cfyes/ipv4.txt': 'CFYES',
+    'https://bestcf.pages.dev/tiancheng/all.txt': 'Tiancheng', 
+    'https://bestcf.pages.dev/gslege/SG.txt': 'Gslege-SG', 
+    'https://bestcf.pages.dev/gslege/DE.txt': 'Gslege-DE',
+    'https://bestcf.pages.dev/gslege/US.txt': 'Gslege-US',                 
     'https://ipdb.api.030101.xyz/?type=bestcf': 'IPDB',
-    'https://ipdb.api.030101.xyz/?type=bestcfv6': 'IPDBv6',
-    'https://cf.090227.xyz/CloudFlareYes': 'CFYes',
-    'https://ip.haogege.xyz': 'HaoGG',
     'https://vps789.com/openApi/cfIpApi': 'VPS',
-    'https://www.wetest.vip/page/cloudflare/address_v4.html': 'WeTest',
-    'https://www.wetest.vip/page/cloudflare/address_v6.html': 'WeTestV6',
-    'https://addressesapi.090227.xyz/ct': 'CMLiuss',
-    'https://addressesapi.090227.xyz/cmcc-ipv6': 'CMLiussv6',
-    'https://raw.githubusercontent.com/xingpingcn/enhanced-FaaS-in-China/refs/heads/main/Cf.json': 'FaaS',
 }
 
 PORT: str = '443'
-HEADERS: dict[str, str] = {'User-Agent': 'Mozilla/5.0'}
+HEADERS: dict[str, str] = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0'}
 IPV4_PATTERN: str = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
 LOCATION_URL: str = 'https://ipinfo.io/{ip}/country'
 OUTPUT_FILE: Path = Path('ipv4.txt')
