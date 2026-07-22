@@ -2,7 +2,7 @@ name: Collect BestIPs
 
 on:
   schedule:
-    - cron: '0 */1 * * *'
+    - cron: '50 */1 * * *'
   workflow_dispatch:
 
 concurrency:
