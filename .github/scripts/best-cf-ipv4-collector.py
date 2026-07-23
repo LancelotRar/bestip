@@ -11,15 +11,15 @@ from urllib3.util import Retry
 
 
 SOURCES: dict[str, str] = {
-    'https://bestcf.pages.dev/wetest/ipv4.txt': 'WeTest',
-    'https://bestcf.pages.dev/uouin/all.txt': 'UOUIN',
+    'https://www.wetest.vip/page/cloudfront/address_v4.html': 'WeTest',
+    'https://api.uouin.com/cloudflare.html': 'UOUIN',
     'https://bestcf.pages.dev/xinyitang3/ipv4.txt': 'Mia',
-    'https://bestcf.pages.dev/cfyes/ipv4.txt': 'CFYES',
+    'https://stock.hostmonit.com/CloudFlareYes': 'CFYES',
     'https://bestcf.pages.dev/tiancheng/all.txt': 'Tiancheng', 
-    'https://bestcf.pages.dev/gslege/SG.txt': 'Gslege-SG', 
-    'https://bestcf.pages.dev/gslege/DE.txt': 'Gslege-DE',
-    'https://bestcf.pages.dev/gslege/US.txt': 'Gslege-US',                 
-    'https://ipdb.api.030101.xyz/?type=bestcf': 'IPDB',
+    'https://raw.githubusercontent.com/gslege/CloudflareIP/refs/heads/main/SG.txt': 'Gslege-SG', 
+    'https://raw.githubusercontent.com/gslege/CloudflareIP/refs/heads/main/DE.txt': 'Gslege-DE',
+    'https://raw.githubusercontent.com/gslege/CloudflareIP/refs/heads/main/US.txt': 'Gslege-US',                 
+    'https://raw.githubusercontent.com/ymyuuu/IPDB/refs/heads/main/BestCF/bestcfv4.txt': 'IPDB',
     'https://vps789.com/openApi/cfIpApi': 'VPS789',
 }
 
